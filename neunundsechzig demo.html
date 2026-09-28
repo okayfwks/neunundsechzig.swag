@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>okayfwks</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background-color: #000000;
+            color: #ffffff;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        /* Simple flat solid borders */
+        .simple-border {
+            border: 1px solid #ffffff;
+        }
+
+        .simple-border-gray {
+            border: 1px solid #444444;
+        }
+
+        /* Simple button hover states with inverted colors */
+        .retro-btn {
+            background-color: #000000;
+            color: #ffffff;
+            border: 1px solid #ffffff;
+            cursor: pointer;
+            transition: none;
+        }
+
+        .retro-btn:hover {
+            background-color: #ffffff;
+            color: #000000;
+        }
+
+        /* Active tab indicator */
+        .nav-active {
+            background-color: #ffffff !important;
+            color: #000000 !important;
+        }
+
+        /* Responsive full-screen iframe styling */
+        .iframe-container {
+            width: 100%;
+            height: calc(100vh - 180px);
+            max-width: 1000px;
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            background-color: #000000;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col items-center justify-between p-4 sm:p-6 select-none bg-black text-white">
+
+    <div class="w-full max-w-4xl flex-grow flex flex-col">
+        <!-- Header & Navigation -->
+        <header class="simple-border p-3 sm:p-4 mb-6 flex flex-col sm:flex-row justify-between items-center gap-3 bg-black">
+            <div class="font-bold tracking-widest text-sm">[ SITE_HUB ]</div>
+            <nav class="flex flex-wrap gap-2 justify-center">
+                <button id="btn-home" onclick="switchTab('home')" class="retro-btn nav-active px-3 py-1 text-xs font-bold">
+                    HOME
+                </button>
+                <button id="btn-members" onclick="switchTab('members')" class="retro-btn px-3 py-1 text-xs font-bold">
+                    MEMBERS
+                </button>
+                <!-- Neue Unterkategorie -->
+                <button id="btn-okayfwks" onclick="switchTab('okayfwks')" class="retro-btn px-3 py-1 text-xs font-bold">
+                    &gt; OKAYFWKS
+                </button>
+            </nav>
+        </header>
+
+        <!-- Home Section -->
+        <main id="section-home" class="space-y-4">
+            <div class="simple-border p-6 bg-black">
+                <h1 class="text-xl font-bold mb-3">&gt; WELCOME</h1>
+                <p class="text-sm text-gray-300 leading-relaxed mb-4">
+                    welcome to neunundsechzig.swag #gang !!!
+                </p>
+                <div class="simple-border-gray p-3 text-xs text-gray-400">
+                    
+                </div>
+            </div>
+        </main>
+
+        <!-- Members Section -->
+        <main id="section-members" class="hidden space-y-4">
+            <div class="simple-border p-6 bg-black">
+                <h2 class="text-xl font-bold mb-4">&gt; MEMBERS</h2>
+                <p class="text-xs text-gray-400 mb-6"></p>
+
+                <!-- Member Item: okayfwks -->
+                <div onclick="switchTab('okayfwks')" class="retro-btn p-4 flex justify-between items-center">
+                    <span class="font-bold text-base">okayfwks</span>
+                    <span class="text-xs">[ FULLSCREEN ]</span>
+                </div>
+            </div>
+        </main>
+
+        <!-- OKAYFWKS Dedicated Fullscreen Subcategory Section -->
+        <main id="section-okayfwks" class="hidden flex-grow flex flex-col items-center">
+            <div class="simple-border p-3 w-full flex-grow flex flex-col items-center bg-black">
+                <!-- Subcategory Header Bar -->
+                <div class="w-full flex justify-between items-center pb-2 mb-3 border-b border-white text-xs font-bold">
+                    <span>[ SUB-CATEGORY: OKAYFWKS ]</span>
+                    <button onclick="switchTab('members')" class="retro-btn px-2 py-0.5">
+                        &lt; BACK TO MEMBERS
+                    </button>
+                </div>
+
+                <!-- Fullscreen Iframe Container -->
+                <div class="iframe-container simple-border p-1 bg-black flex-grow">
+                    <iframe 
+                        src="https://360sona.com/w/k_P0fZ8cOc544CD4wWLE" 
+                        title="My 360sona" 
+                        loading="lazy"
+                        style="border:0">
+                    </iframe>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer class="w-full max-w-4xl text-center text-xs text-gray-500 my-4">
+        --- END OF TRANSMISSION ---
+    </footer>
+
+    <!-- JavaScript Logic -->
+    <script>
+        function switchTab(tabName) {
+            const sections = {
+                home: document.getElementById('section-home'),
+                members: document.getElementById('section-members'),
+                okayfwks: document.getElementById('section-okayfwks')
+            };
+
+            const buttons = {
+                home: document.getElementById('btn-home'),
+                members: document.getElementById('btn-members'),
+                okayfwks: document.getElementById('btn-okayfwks')
+            };
+
+            // Hide all sections & deactivate buttons
+            Object.keys(sections).forEach(key => {
+                sections[key].classList.add('hidden');
+                buttons[key].classList.remove('nav-active');
+            });
+
+            // Show selected section & activate button
+            if (sections[tabName]) {
+                sections[tabName].classList.remove('hidden');
+                buttons[tabName].classList.add('nav-active');
+            }
+        }
+    </script>
+</body>
+</html>
